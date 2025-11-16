@@ -78,6 +78,11 @@ App.storage = {
     this.loadOpponentShots();
   },
   
+  // Alias for loadAll for compatibility
+  load() {
+    this.loadAll();
+  },
+  
   loadSelectedPlayers() {
     const saved = localStorage.getItem(this.getTeamStorageKey("selectedPlayers"));
     if (saved) {

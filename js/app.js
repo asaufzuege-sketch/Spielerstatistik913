@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
   // 3. Daten aus LocalStorage laden
-  App.storage.loadAll();
+  App.storage.load();
   
   // 4. Alle Module initialisieren
   App.teamSelection.init();

@@ -4,40 +4,9 @@ App.teamSelection = {
   currentTeam: 1,
   
   init() {
-    // Attach event listeners to existing team buttons in HTML
-    for (let i = 1; i <= 3; i++) {
-      const teamBtn = document.getElementById(`teamBtn${i}`);
-      const editBtn = document.getElementById(`editBtn${i}`);
-      
-      if (teamBtn) {
-        teamBtn.addEventListener("click", () => {
-          this.switchTeam(i);
-          App.showPage("selection");
-        });
-      }
-      
-      if (editBtn) {
-        editBtn.addEventListener("click", () => {
-          this.openEditModal(i);
-        });
-      }
-    }
-    
-    // Setup modal buttons
-    const saveBtn = document.getElementById("saveTeamNameBtn");
-    const cancelBtn = document.getElementById("cancelTeamEditBtn");
-    
-    if (saveBtn) {
-      saveBtn.addEventListener("click", () => this.saveTeamName());
-    }
-    
-    if (cancelBtn) {
-      cancelBtn.addEventListener("click", () => this.closeEditModal());
-    }
-    
-    // Load team names from storage
+    this.container = document.getElementById("teamSelectionContainer");
+    this.createTeamButtons();
     this.initTeamFromStorage();
-    this.loadTeamNames();
   },
   
   createTeamButtons() {
@@ -301,11 +270,6 @@ App.teamSelection = {
     return true;
   },
   
-  // Get current team number
-  getCurrentTeam() {
-    return this.currentTeam;
-  },
-  
   // Get current team info
   getCurrentTeamInfo() {
     return {
@@ -317,61 +281,9 @@ App.teamSelection = {
     };
   },
   
-  // Load team names from storage
-  loadTeamNames() {
-    for (let i = 1; i <= 3; i++) {
-      const savedName = localStorage.getItem(`teamName${i}`);
-      const nameElement = document.getElementById(`teamName${i}`);
-      if (savedName && nameElement) {
-        nameElement.textContent = savedName;
-      }
-    }
-  },
-  
-  // Open edit modal for team name
-  openEditModal(teamNumber) {
-    this.editingTeam = teamNumber;
-    const modal = document.getElementById("teamEditModal");
-    const input = document.getElementById("teamNameInput");
-    const currentName = document.getElementById(`teamName${teamNumber}`).textContent;
-    
-    if (modal && input) {
-      input.value = currentName === "Neues Team" ? "" : currentName;
-      modal.style.display = "flex";
-      input.focus();
-    }
-  },
-  
-  // Close edit modal
-  closeEditModal() {
-    const modal = document.getElementById("teamEditModal");
-    const input = document.getElementById("teamNameInput");
-    
-    if (modal) {
-      modal.style.display = "none";
-    }
-    if (input) {
-      input.value = "";
-    }
-    this.editingTeam = null;
-  },
-  
-  // Save team name
-  saveTeamName() {
-    const input = document.getElementById("teamNameInput");
-    const teamNumber = this.editingTeam;
-    
-    if (!input || !teamNumber) return;
-    
-    const newName = input.value.trim() || "Neues Team";
-    const nameElement = document.getElementById(`teamName${teamNumber}`);
-    
-    if (nameElement) {
-      nameElement.textContent = newName;
-    }
-    
-    localStorage.setItem(`teamName${teamNumber}`, newName);
-    this.closeEditModal();
+  // Get current team number
+  getCurrentTeam() {
+    return this.currentTeam;
   },
   
   // Export current team data
