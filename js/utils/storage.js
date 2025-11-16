@@ -151,5 +151,23 @@ App.storage = {
     App.data.playerTimes = {};
     App.data.seasonData = {};
     App.data.activeTimers = {};
+  },
+  
+  // Get current page from localStorage
+  getCurrentPage() {
+    try {
+      return localStorage.getItem("currentPage") || "stats";
+    } catch (e) {
+      return "stats";
+    }
+  },
+  
+  // Set current page in localStorage
+  setCurrentPage(page) {
+    try {
+      localStorage.setItem("currentPage", page);
+    } catch (e) {
+      console.error("Failed to save current page:", e);
+    }
   }
 };
