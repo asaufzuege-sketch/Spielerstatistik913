@@ -306,6 +306,17 @@ App.teamSelection = {
     return this.currentTeam;
   },
   
+  // Get current team info
+  getCurrentTeamInfo() {
+    return {
+      number: this.currentTeam,
+      id: `team${this.currentTeam}`,
+      name: `Team ${this.currentTeam}`,
+      playerCount: App.data.selectedPlayers.length,
+      hasData: Object.keys(App.data.statsData).length > 0
+    };
+  },
+  
   // Load team names from storage
   loadTeamNames() {
     for (let i = 1; i <= 3; i++) {
