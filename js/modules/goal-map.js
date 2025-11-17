@@ -30,7 +30,6 @@ App.goalMap = {
       let mouseHoldTimer = null;
       let isLong = false;
       let lastMouseUp = 0;
-      let lastTouchEnd = 0;
       
       const getPosFromEvent = (e) => {
         const boxRect = img.getBoundingClientRect();
@@ -142,41 +141,7 @@ App.goalMap = {
         isLong = false;
       });
       
-      // Touch Events
-      img.addEventListener("touchstart", (ev) => {
-        isLong = false;
-        if (mouseHoldTimer) clearTimeout(mouseHoldTimer);
-        mouseHoldTimer = setTimeout(() => {
-          isLong = true;
-          placeMarker(getPosFromEvent(ev.touches[0]), true);
-        }, App.markerHandler.LONG_MARK_MS);
-      }, { passive: true });
-      
-      img.addEventListener("touchend", (ev) => {
-        if (mouseHoldTimer) {
-          clearTimeout(mouseHoldTimer);
-          mouseHoldTimer = null;
-        }
-        const now = Date.now();
-        const pos = getPosFromEvent(ev.changedTouches[0]);
-        
-        if (now - lastTouchEnd < 300) {
-          placeMarker(pos, true, true);
-          lastTouchEnd = 0;
-        } else {
-          if (!isLong) placeMarker(pos, false);
-          lastTouchEnd = now;
-        }
-        isLong = false;
-      }, { passive: true });
-      
-      img.addEventListener("touchcancel", () => {
-        if (mouseHoldTimer) {
-          clearTimeout(mouseHoldTimer);
-          mouseHoldTimer = null;
-        }
-        isLong = false;
-      }, { passive: true });
+      // Touch Events wurden ENTFERNT - der Browser behandelt Touch automatisch als Click
     });
   },
   
@@ -196,7 +161,6 @@ App.goalMap = {
         
         let lastTap = 0;
         let clickTimeout = null;
-        let touchStart = 0;
         
         const updateValue = (delta) => {
           const current = Number(btn.textContent) || 0;
@@ -226,27 +190,7 @@ App.goalMap = {
           }
         });
         
-        btn.addEventListener("touchstart", (e) => {
-          const now = Date.now();
-          const diff = now - touchStart;
-          if (diff < 300) {
-            e.preventDefault();
-            if (clickTimeout) {
-              clearTimeout(clickTimeout);
-              clickTimeout = null;
-            }
-            updateValue(-1);
-            touchStart = 0;
-          } else {
-            touchStart = now;
-            setTimeout(() => {
-              if (touchStart !== 0) {
-                updateValue(+1);
-                touchStart = 0;
-              }
-            }, 300);
-          }
-        }, { passive: true });
+        // Touch Event für Time-Buttons wurde ENTFERNT - der Browser behandelt Touch automatisch als Click
       });
     });
   },
