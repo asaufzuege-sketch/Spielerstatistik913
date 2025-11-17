@@ -1,14 +1,17 @@
 :root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
+  /* Dark-Mode (Standard) */
+  --bg-color: #111111;
+  --text-color: #ffffff;
   --header-bg: #1E1E1E;
-  --row-even: #f0f0f0;
-  --row-odd: #e0e0e0;
+  --row-even: #333333;
+  --row-odd: #4a4a4a;
+
+  /* Akzentfarben bleiben wie gehabt */
   --page-title-start: #7dceb6;
   --page-title-end: #66a895;
   --cell-pos-color: #00c06f;
   --cell-neg-color: #ff4c4c;
-  --cell-zero-color: #000000;
+  --cell-zero-color: #ffffff;
   --btn-top-bg: #c8fbc8;
   --btn-bottom-bg: #ffe7e7;
   --timer-active-color: #005c2f;
@@ -18,16 +21,23 @@
   --ice-bottom: #ff4c4c;
 }
 
-[data-theme="dark"] {
-  --bg-color: #111111;
-  --text-color: #ffffff;
-  --header-bg: #1E1E1E;
-  --row-even: #333333;
-  --row-odd: #4a4a4a;
-  --cell-pos-color: #00ff80;
-  --cell-neg-color: #ff4c4c;
-  --cell-zero-color: #ffffff;
-  --timer-left-bg: #3b3b3b;
+/* Light-Mode (System bevorzugt helles Design) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --header-bg: #f0f0f0;
+    --row-even: #f7f7f7;
+    --row-odd: #e8e8e8;
+
+    /* Akzentfarben unverändert lassen */
+    --cell-pos-color: #00c06f;
+    --cell-neg-color: #ff4c4c;
+    --cell-zero-color: #000000;
+    --btn-top-bg: #c8fbc8;
+    --btn-bottom-bg: #ffe7e7;
+    --timer-left-bg: #dddddd;
+  }
 }
 
 body {
@@ -739,320 +749,4 @@ th .sort-arrow { font-size: 0.7rem; color: #ddd }
   font-weight: 700;
   border-top: 2px solid #333;
   padding: 8px 6px;
-}
-
-/* ==================== */
-/* TEAMAUSWAHL STYLES */
-/* ==================== */
-
-.team-selection-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.team-slots {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.team-slot {
-  background: #1a1a1a;
-  border: 2px solid #333;
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: border-color 0.3s ease;
-}
-
-.team-slot:hover {
-  border-color: #44bb91;
-}
-
-.team-display h3 {
-  margin: 0 0 8px 0;
-  color: #44bb91;
-  font-size: 1.2rem;
-}
-
-.team-name {
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.team-btn {
-  background: #44bb91;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-right: 10px;
-}
-
-.team-btn:hover {
-  background: #36a67d;
-}
-
-.team-btn.active-team {
-  background: #2a2a2a;
-  border: 2px solid #44bb91;
-  color: #44bb91;
-  padding: 10px 22px; /* Angepasst wegen Border */
-}
-
-.team-btn.active-team:hover {
-  background: #333;
-  border-color: #36a67d;
-  color: #36a67d;
-}
-
-.edit-team-btn {
-  background: #44bb91;
-  color: #333;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
-
-.edit-team-btn:hover {
-  background: #36a67d;
-}
-
-/* Modal Styles - Korrigiert für gleiche Höhe */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #1a1a1a;
-  border: 2px solid #44bb91;
-  border-radius: 12px;
-  padding: 30px;
-  max-width: 400px;
-  width: 90%;
-}
-
-.modal-content h3 {
-  margin: 0 0 20px 0;
-  color: #44bb91;
-  text-align: center;
-}
-
-#teamNameInput {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #333;
-  border-radius: 8px;
-  background: #2a2a2a;
-  color: white;
-  font-size: 1rem;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-}
-
-#teamNameInput:focus {
-  outline: none;
-  border-color: #44bb91;
-}
-
-.modal-buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: stretch; /* Wichtig für gleiche Höhe */
-  width: 100%;
-}
-
-.modal-buttons button {
-  flex: 1;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background 0.3s ease;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  min-width: 0;
-  margin: 0; /* Entfernt eventuell vererbte Margins */
-  line-height: 1; /* Konsistente Zeilenhöhe */
-  vertical-align: top; /* Gleiche Baseline */
-}
-
-#saveTeamNameBtn {
-  background: #44bb91;
-  color: white;
-}
-
-#saveTeamNameBtn:hover {
-  background: #36a67d;
-}
-
-#cancelTeamEditBtn {
-  background: #666;
-  color: white;
-}
-
-#cancelTeamEditBtn:hover {
-  background: #777;
-}
-
-/* Überschreibt eventuelle confirm-btn Styles für Modal */
-.modal-buttons .confirm-btn {
-  background: #44bb91 !important;
-  color: white !important;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 44px !important;
-  flex: 1 !important;
-}
-
-.modal-buttons .confirm-btn:hover {
-  background: #36a67d !important;
-}
-
-.modal-buttons .cancel-btn {
-  background: #666 !important;
-  color: white !important;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 44px !important;
-  flex: 1 !important;
-}
-
-.modal-buttons .cancel-btn:hover {
-  background: #777 !important;
-}
-
-/* Current Team Info */
-.current-team-info {
-  text-align: center;
-  margin: 10px 0 20px 0;
-  color: #ccc;
-  font-size: 0.95rem;
-}
-
-.current-team-info strong {
-  color: #44bb91;
-}
-
-/* ==================== */
-/* DRAG & DROP STYLES */
-/* ==================== */
-
-/* Drag Handle Styles */
-.drag-handle {
-  display: inline-block;
-  font-weight: bold;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: none;
-  font-size: 16px;
-  line-height: 1;
-  vertical-align: middle;
-  cursor: grab;
-}
-
-.drag-handle:hover {
-  color: #36a67d !important;
-  transform: scale(1.1);
-}
-
-.drag-handle:active {
-  cursor: grabbing !important;
-}
-
-/* Dragging state */
-.stats-table tbody tr {
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.stats-table tbody tr:not(.total-row) td:first-child + td {
-  position: relative;
-}
-
-/* Touch optimization */
-.drag-handle {
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-/* Touch-Optimierung für Zoom-Problem */
-img, .torbild-box img, .time-btn, td[data-player][data-cat] {
-  touch-action: manipulation !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-  -webkit-touch-callout: none !important;
-}
-
-.torbild-box {
-  touch-action: manipulation !important;
-}
-
-.stats-table td {
-  touch-action: manipulation !important;
-}
-
-/* Mobile Responsive für Teamauswahl */
-@media (max-width: 768px) {
-  .team-slot {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-  
-  .team-btn {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content {
-    margin: 20px;
-  }
-  
-  .drag-handle {
-    font-size: 18px;
-    margin-right: 10px !important;
-    padding: 2px;
-  }
-  
-  .modal-buttons {
-    flex-direction: row !important;
-    gap: 10px;
-    align-items: stretch !important;
-  }
-  
-  .modal-buttons button {
-    flex: 1;
-    min-width: 0;
-    height: 44px !important;
-  }
 }
