@@ -227,10 +227,10 @@ App.goalMap = {
         });
         
         btn.addEventListener("touchstart", (e) => {
+          e.preventDefault();
           const now = Date.now();
           const diff = now - touchStart;
           if (diff < 300) {
-            e.preventDefault();
             if (clickTimeout) {
               clearTimeout(clickTimeout);
               clickTimeout = null;
@@ -246,7 +246,7 @@ App.goalMap = {
               }
             }, 300);
           }
-        }, { passive: true });
+        });
       });
     });
   },
