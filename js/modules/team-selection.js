@@ -281,6 +281,11 @@ App.teamSelection = {
     };
   },
   
+  // Get current team number
+  getCurrentTeam() {
+    return this.currentTeam;
+  },
+  
   // Export current team data
   exportCurrentTeam() {
     if (App.csvHandler && App.csvHandler.exportStats) {
