@@ -69,6 +69,10 @@ App.storage = {
   },
   
   // Teamspezifisches Laden aller Daten
+  load() {
+    this.loadAll();
+  },
+  
   loadAll() {
     this.loadSelectedPlayers();
     this.loadStatsData();
@@ -127,6 +131,15 @@ App.storage = {
         }
       }, 100);
     }
+  },
+  
+  // Page Navigation Storage
+  getCurrentPage() {
+    return localStorage.getItem("currentPage") || "teamSelection";
+  },
+  
+  setCurrentPage(page) {
+    localStorage.setItem("currentPage", page);
   },
   
   // Reset nur für aktuelles Team

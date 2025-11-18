@@ -270,6 +270,11 @@ App.teamSelection = {
     return true;
   },
   
+  // Get current team number
+  getCurrentTeam() {
+    return this.currentTeam;
+  },
+  
   // Get current team info
   getCurrentTeamInfo() {
     return {
